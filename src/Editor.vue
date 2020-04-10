@@ -34,6 +34,10 @@ import _ from 'underscore';
 export default {
   name: "medium-editor",
   data() {
+    const MediumEditor = require('medium-editor');
+    const mediumEditorColorButtons = require('medium-editor-colorpicker-buttons').get(MediumEditor);
+    const TextColorButtonClass = mediumEditorColorButtons.TextColorButtonClass
+    
     return {
       editor: null,
       defaultOptions: {
@@ -46,7 +50,10 @@ export default {
         file_input_name: "image",
         imgur: true,
         toolbar: {
-          buttons: ["bold", "italic", "quote", "h1", "h2", "h3", "h4", "h5"]
+          buttons: ["bold", "italic", "quote", "h1", "h2", "h3", "h4", "h5", "textcolor"]
+        },
+        extensions: {
+          textcolor: new TextColorButtonClass(/* options? */)
         }
       },
       hasContent: false
