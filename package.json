@@ -1,8 +1,8 @@
 {
-  "name": "vuejs-medium-editor",
-  "version": "1.1.0",
+  "name": "vuejs-medium-editor-colorpicker",
+  "version": "0.0.1",
   "main": "./src/Editor.vue",
-  "description": "This is a Medium like editor for Vue Js 2",
+  "description": "This is a Medium like editor for Vue Js 2 with colorpicker extension added",
   "keywords": [
     "vue",
     "medium editor",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/manuelgeek/vuejs-medium-editor"
+    "url": "https://github.com/banchojp/vuejs-medium-editor.git"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
@@ -35,6 +35,7 @@
     "embed-preset-basic": "^5.0.3",
     "iframe-resizer": "^3.6.1",
     "medium-editor": "^5.23.3",
+    "medium-editor-colorpicker-buttons": "0.0.4",
     "pure-gist-embed": "^1.0.3",
     "randomstring": "^1.1.5",
     "underscore": "^1.9.1",
@@ -74,5 +75,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
+  "homepage": "https://github.com/banchojp/vuejs-medium-editor#readme",
   "license": "MIT"
 }
