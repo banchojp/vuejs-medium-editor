@@ -19,8 +19,6 @@
                     v-on:uploaded="uploadCallback"
                     v-on:imageClick="imageClickHandler"
                 ></insert-image>
-                <insert-gist :editor="editor"
-                    v-on:onChange="onChange" :insert="insert"></insert-gist>
             </div>
         </div>
         <image-position
@@ -32,7 +30,6 @@
 
 <script>
 import InsertImage from './Embed/InsertImage';
-import InsertGist from './Embed/InsertGist';
 import ImagePosition from './Embed/ImagePosition';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -43,7 +40,6 @@ export default {
     components: {
         FontAwesomeIcon,
         InsertImage,
-        InsertGist,
         ImagePosition
     },
     data() {
