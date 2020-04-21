@@ -2,6 +2,7 @@
   <file-upload
     ref="upload"
     class="btn-toggle"
+    :class="toggleClass"
     extensions="gif,jpg,jpeg,png,webp"
     accept="image/png,image/gif,image/jpeg,image/webp"
     :post-action="uploadUrl"
@@ -14,17 +15,13 @@
     @input-filter="inputFilter"
     @input-file="inputFile"
   >
-    <font-awesome-icon :icon="['far', 'images']" />
+    写真を追加
   </file-upload>
 </template>
 
 <script>
 import VueUploadComponent from "vue-upload-component";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faImages } from "@fortawesome/free-regular-svg-icons";
 import _ from "underscore";
-library.add(faImages);
 export default {
   props: [
     "editor",
@@ -37,7 +34,6 @@ export default {
     "handler"
   ],
   components: {
-    FontAwesomeIcon,
     "file-upload": VueUploadComponent
   },
   data() {
@@ -52,6 +48,15 @@ export default {
       uploadedImageId: null,
       extraData: {}
     };
+  },
+  computed: {
+    toggleClass: function() {
+      if (this.insert.isToggle) {
+        return "btn-toggle-show";
+      } else {
+        return null;
+      }
+    }
   },
   methods: {
     initializeExisting() {
