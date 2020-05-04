@@ -190,6 +190,12 @@ export default {
           this.uploadedImage = newFile.response.url;
           this.$emit("uploaded", newFile.response.url);
         }
+      } else if (newFile && newFile.active && newFile.response.error) {
+        this.$emit("upload-error", newFile.response.data.message);
+        var imgElem = document.getElementById(newFile.response.data.image_id);
+        if (imgElem && imgElem.parentNode) {
+          imgElem.parentNode.parentNode.removeChild(imgElem.parentNode);
+        }
       }
     }
   },

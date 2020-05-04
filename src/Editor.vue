@@ -10,7 +10,8 @@
                 :onChange="triggerChange"
                 :editorRef="$refs.editor"
                 :editor="editor"
-                v-on:uploaded="uploadedCallback"></insert-embed>
+                v-on:uploaded="uploadedCallback"
+                v-on:upload-error="onUploadError"></insert-embed>
             <list-handler v-if="editor"
                 :editor="editor"
                 :onChange="triggerChange"></list-handler>
@@ -111,8 +112,10 @@ export default {
       }
     },
     uploadedCallback(url) {
-      console.log("callback")
       this.$emit("uploaded", url);
+    },
+    onUploadError(error) {
+      this.$emit("upload-error", error);
     }
   },
   destroyed() {

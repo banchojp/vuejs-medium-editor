@@ -21,6 +21,7 @@
           :imgur_bool="imgur_bool"
           :handler="handler"
           v-on:uploaded="uploadCallback"
+          v-on:upload-error="onUploadError"
           v-on:imageClick="imageClickHandler"
         ></insert-image>
       </div>
@@ -165,6 +166,9 @@ export default {
     },
     uploadCallback(url) {
       this.$emit("uploaded", url);
+    },
+    onUploadError(error) {
+      this.$emit("upload-error", error);
     },
     handleScroll() {
       this.handler.isShow = false;

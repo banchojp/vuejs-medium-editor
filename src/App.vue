@@ -5,7 +5,8 @@
             :prefill="defaultValue"
             :options="options"
             :onChange="onChange"
-            v-on:uploaded="uploadCallback">
+            v-on:uploaded="uploadCallback"
+            v-on:upload-error="onUploadError">
         </medium-editor>
     </div>
 </template>
@@ -67,6 +68,9 @@ export default {
     },
     uploadCallback(url) {
         console.log("uploaded url", url)
+    },
+    onUploadError(error) {
+        console.log("upload error", error);
     }
   },
   mounted(){
