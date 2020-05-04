@@ -185,8 +185,10 @@ export default {
           document
             .getElementById(newFile.response.data.image_id)
             .classList.remove("shade");
+          this.$emit("uploaded", newFile.response.data.link);
         } else {
           this.uploadedImage = newFile.response.url;
+          this.$emit("uploaded", newFile.response.url);
         }
       }
     }
