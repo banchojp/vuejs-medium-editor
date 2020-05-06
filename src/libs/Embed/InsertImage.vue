@@ -154,7 +154,7 @@ export default {
           this.editorRef.focus();
           this.editor.selectElement(this.insert.focusLine);
           this.editor.pasteHTML(
-            '<div class="editor-image"><img class="shade" id="' +
+            '<div class="editor-image"><img class="uploading-overlay" id="' +
               this.uploadedImageId +
               '" src="' +
               e.target.result +
@@ -184,7 +184,7 @@ export default {
             newFile.response.data.link;
           document
             .getElementById(newFile.response.data.image_id)
-            .classList.remove("shade");
+            .classList.remove("uploading-overlay");
           this.$emit("uploaded", newFile.response.data.link);
         } else {
           this.uploadedImage = newFile.response.url;
@@ -217,8 +217,7 @@ export default {
 </script>
 
 <style>
-.shade {
-  -webkit-filter: brightness(0.2) blur(3px);
-  filter: brightness(0.2) blur(3px);
+.uploading-overlay {
+  opacity: 0.75;
 }
 </style>
