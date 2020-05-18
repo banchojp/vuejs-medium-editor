@@ -29,6 +29,7 @@
     <image-position
       :handler="handler"
       v-on:onPositionChange="onChange"
+      v-on:onRemove="onRemove"
     ></image-position>
   </div>
 </template>
@@ -85,6 +86,9 @@ export default {
     }
   },
   methods: {
+    onRemove() {
+      this.$emit("onRemove", this.handler);
+    },
     subscribe() {
       this.editor.subscribe("editableKeyup", this.detectShowToggle);
       this.editor.subscribe("editableClick", this.detectShowToggle);

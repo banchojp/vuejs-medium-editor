@@ -1,44 +1,52 @@
 <template>
-    <div>
-        <!-- Editor Mode -->
-        <div class="medium-editor-container" v-if="!readOnly">
-            <insert-embed v-if="editor" 
-                :uploadUrl="options.uploadUrl"
-                :uploadUrlHeader="options.uploadUrlHeader"
-                :file_input_name="options.file_input_name"
-                :imgur_bool="options.imgur"
-                :onChange="triggerChange"
-                :editorRef="$refs.editor"
-                :editor="editor"
-                v-on:uploaded="uploadedCallback"
-                v-on:upload-error="onUploadError"></insert-embed>
-            <list-handler v-if="editor"
-                :editor="editor"
-                :onChange="triggerChange"></list-handler>
-            <div class="editor" 
-                v-bind:class="editorClass"
-                v-html="prefill"
-                ref="editor">
-            </div>
-        </div>
-        <!-- Read Only Mode -->
-        <read-mode v-if="readOnly" :content="prefill"></read-mode>
+  <div>
+    <!-- Editor Mode -->
+    <div class="medium-editor-container" v-if="!readOnly">
+      <insert-embed
+        v-if="editor"
+        :uploadUrl="options.uploadUrl"
+        :uploadUrlHeader="options.uploadUrlHeader"
+        :file_input_name="options.file_input_name"
+        :imgur_bool="options.imgur"
+        :onChange="triggerChange"
+        :editorRef="$refs.editor"
+        :editor="editor"
+        v-on:uploaded="uploadedCallback"
+        v-on:upload-error="onUploadError"
+        v-on:onRemove="onRemove"
+      ></insert-embed>
+      <list-handler
+        v-if="editor"
+        :editor="editor"
+        :onChange="triggerChange"
+      ></list-handler>
+      <div
+        class="editor"
+        v-bind:class="editorClass"
+        v-html="prefill"
+        ref="editor"
+      ></div>
     </div>
+    <!-- Read Only Mode -->
+    <read-mode v-if="readOnly" :content="prefill"></read-mode>
+  </div>
 </template>
 
 <script>
-import MediumEditor from 'medium-editor';
-import InsertEmbed from './libs/InsertEmbed';
-import ListHandler from './libs/ListHandler';
-import ReadMode from './libs/ReadMode';
-import _ from 'underscore';
+import MediumEditor from "medium-editor";
+import InsertEmbed from "./libs/InsertEmbed";
+import ListHandler from "./libs/ListHandler";
+import ReadMode from "./libs/ReadMode";
+import _ from "underscore";
 export default {
   name: "medium-editor",
   data() {
-    const MediumEditor = require('medium-editor');
-    const mediumEditorColorButtons = require('medium-editor-colorpicker-buttons').get(MediumEditor);
-    const TextColorButtonClass = mediumEditorColorButtons.TextColorButtonClass
-    
+    const MediumEditor = require("medium-editor");
+    const mediumEditorColorButtons = require("medium-editor-colorpicker-buttons").get(
+      MediumEditor
+    );
+    const TextColorButtonClass = mediumEditorColorButtons.TextColorButtonClass;
+
     return {
       editor: null,
       defaultOptions: {
@@ -47,11 +55,21 @@ export default {
           text: "Write something great!!"
         },
         uploadUrl: "https://api.imgur.com/3/image",
-        uploadUrlHeader: {'Authorization': 'Client-ID db856b43cc7f441'},
+        uploadUrlHeader: { Authorization: "Client-ID db856b43cc7f441" },
         file_input_name: "image",
         imgur: true,
         toolbar: {
-          buttons: ["bold", "italic", "quote", "h1", "h2", "h3", "h4", "h5", "textcolor"]
+          buttons: [
+            "bold",
+            "italic",
+            "quote",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "textcolor"
+          ]
         },
         extensions: {
           textcolor: new TextColorButtonClass(/* options? */)
@@ -66,9 +84,9 @@ export default {
       return _.extend(this.defaultOptions, this.options);
     },
     editorClass() {
-        return {
-            'has-content': this.hasContent
-        }
+      return {
+        "has-content": this.hasContent
+      };
     }
   },
   components: {
@@ -116,6 +134,9 @@ export default {
     },
     onUploadError(error) {
       this.$emit("upload-error", error);
+    },
+    onRemove(handler) {
+      handler.currentLine.remove();
     }
   },
   destroyed() {

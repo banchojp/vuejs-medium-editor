@@ -60,20 +60,20 @@ export default {
   },
   methods: {
     initializeExisting() {
-      // const handlerVm = this;
-      // setTimeout(() => {
-      //   const focused = this.editor.getFocusedElement();
-      //   if (!focused) return false;
-      //   const editorImages = focused.getElementsByClassName("editor-image");
-      //   _.map(editorImages, elm => {
-      //     // Set Onclick to Show Image Size Handler
-      //     elm.onclick = function() {
-      //       setTimeout(() => {
-      //         handlerVm.sizingHandler(this);
-      //       });
-      //     };
-      //   });
-      // });
+      const handlerVm = this;
+      setTimeout(() => {
+        const editorImages = document
+          .querySelector(".editor")
+          .getElementsByClassName("editor-image");
+        _.map(editorImages, elm => {
+          // Set Onclick to Show Image Size Handler
+          elm.onclick = function() {
+            setTimeout(() => {
+              handlerVm.sizingHandler(this);
+            });
+          };
+        });
+      });
     },
     addImage(url) {
       this.$emit("uploaded", url);
