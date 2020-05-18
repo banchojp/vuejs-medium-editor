@@ -23,6 +23,7 @@ export default {
       this.$emit("onPositionChange");
     },
     remove() {
+      this.handler.isShow = false;
       this.$emit("onRemove");
     }
   }
