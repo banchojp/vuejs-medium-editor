@@ -38,6 +38,9 @@ import InsertEmbed from "./libs/InsertEmbed";
 import ListHandler from "./libs/ListHandler";
 import ReadMode from "./libs/ReadMode";
 import _ from "underscore";
+import rangy from "rangy";
+import "rangy/lib/rangy-classapplier";
+
 export default {
   name: "medium-editor",
   data() {
@@ -46,6 +49,30 @@ export default {
       MediumEditor
     );
     const TextColorButtonClass = mediumEditorColorButtons.TextColorButtonClass;
+
+    var SmallButton = MediumEditor.extensions.button.extend({
+      name: "small",
+
+      tagNames: ["small"], // nodeName which indicates the button should be 'active' when isAlreadyApplied() is called
+      contentDefault: "<b>キャプション</b>", // default innerHTML of the button
+      contentFA: "<small>キャプション</small>", // innerHTML of button when 'fontawesome' is being used
+      aria: "Caption", // used as both aria-label and title attributes
+      action: "caption", // used as the data-action attribute of the button
+
+      init: function() {
+        MediumEditor.extensions.button.prototype.init.call(this);
+
+        this.classApplier = rangy.createClassApplier("caption", {
+          elementTagName: "small",
+          normalize: true
+        });
+      },
+
+      handleClick: function(event) {
+        this.classApplier.toggleSelection();
+        this.base.checkContentChanged();
+      }
+    });
 
     return {
       editor: null,
@@ -68,11 +95,13 @@ export default {
             "h3",
             "h4",
             "h5",
-            "textcolor"
+            "textcolor",
+            "small"
           ]
         },
         extensions: {
-          textcolor: new TextColorButtonClass(/* options? */)
+          textcolor: new TextColorButtonClass(/* options? */),
+          small: new SmallButton()
         }
       },
       hasContent: false
