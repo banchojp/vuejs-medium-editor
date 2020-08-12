@@ -45,7 +45,7 @@ export default {
   name: "medium-editor",
   data() {
     const MediumEditor = require("medium-editor");
-    const mediumEditorColorButtons = require("medium-editor-colorpicker-buttons").get(
+    const mediumEditorColorButtons = require("medium-editor-colorpicker-buttons-jp").get(
       MediumEditor
     );
     const TextColorButtonClass = mediumEditorColorButtons.TextColorButtonClass;
