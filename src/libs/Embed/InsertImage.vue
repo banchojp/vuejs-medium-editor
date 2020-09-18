@@ -158,7 +158,7 @@ export default {
               this.uploadedImageId +
               '" src="' +
               e.target.result +
-              '" /></div>',
+              '" /></div><br/>',
             {
               cleanAttrs: [],
               cleanTags: [],
@@ -168,7 +168,7 @@ export default {
           const currentPos = document
             .getElementById(this.uploadedImageId)
             .getBoundingClientRect();
-          this.window.scrollTo(0, currentPos.bottom + 100);
+          this.window.scrollTo(0, currentPos.bottom);
           this.insert.isShow = false;
 
           this.uploadedImageId = this.makeid(5);
