@@ -29,7 +29,8 @@
     <image-position
       :handler="handler"
       v-on:onPositionChange="onChange"
-      v-on:onRemove="onRemove"
+      v-on:onLarge="onLarge"
+      v-on:onSmall="onSmall"
     ></image-position>
   </div>
 </template>
@@ -86,8 +87,23 @@ export default {
     }
   },
   methods: {
-    onRemove() {
-      this.$emit("onRemove", this.handler);
+    onLarge() {
+      this.handler.currentLine.className = this.handler.currentLine.className.replace(
+        "editor-image-small",
+        ""
+      );
+      this.$emit("onLarge", this.handler);
+    },
+    onSmall() {
+      this.handler.currentLine.className = this.handler.currentLine.className.replace(
+        "editor-image-small",
+        ""
+      );
+      this.handler.currentLine.className = this.handler.currentLine.className.replace(
+        "editor-image",
+        "editor-image editor-image-small"
+      );
+      this.$emit("onSmall", this.handler);
     },
     subscribe() {
       this.editor.subscribe("editableKeyup", this.detectShowToggle);

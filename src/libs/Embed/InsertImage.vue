@@ -98,7 +98,7 @@ export default {
             handlerVm.sizingHandler(this);
           });
         };
-        this.insert.isShow = false;
+        this.insert.isShow = true;
       }
     },
     sizingHandler(elm) {
@@ -169,7 +169,7 @@ export default {
             .getElementById(this.uploadedImageId)
             .getBoundingClientRect();
           this.window.scrollTo(0, currentPos.bottom);
-          this.insert.isShow = false;
+          this.insert.isShow = true;
 
           this.uploadedImageId = this.makeid(5);
           this.extraData = { image_id: this.uploadedImageId };
@@ -186,6 +186,17 @@ export default {
             .getElementById(newFile.response.data.image_id)
             .classList.remove("uploading-overlay");
           this.$emit("uploaded", newFile.response.data.link);
+          // Add ImagePosition handler
+          this.currentLine = document.getElementById(
+            newFile.response.data.image_id
+          ).parentElement;
+          const handlerVm = this;
+          this.currentImg = this.currentLine.querySelector("img");
+          this.currentLine.onclick = function() {
+            setTimeout(() => {
+              handlerVm.sizingHandler(this);
+            });
+          };
         } else {
           this.uploadedImage = newFile.response.url;
           this.$emit("uploaded", newFile.response.url);

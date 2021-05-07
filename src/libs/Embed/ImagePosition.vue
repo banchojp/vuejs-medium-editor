@@ -4,9 +4,15 @@
     v-if="handler.isShow"
     v-bind:style="handler.position"
   >
+    画像サイズ:
     <div class="image-hander-menu">
-      <button class="btn-toggle" v-on:click="remove">
-        ゴミ箱
+      <button v-on:click="large">
+        大
+      </button>
+    </div>
+    <div class="image-hander-menu">
+      <button v-on:click="small">
+        小
       </button>
     </div>
   </div>
@@ -22,9 +28,13 @@ export default {
 
       this.$emit("onPositionChange");
     },
-    remove() {
+    large() {
       this.handler.isShow = false;
-      this.$emit("onRemove");
+      this.$emit("onLarge");
+    },
+    small() {
+      this.handler.isShow = false;
+      this.$emit("onSmall");
     }
   }
 };

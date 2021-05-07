@@ -13,7 +13,8 @@
         :editor="editor"
         v-on:uploaded="uploadedCallback"
         v-on:upload-error="onUploadError"
-        v-on:onRemove="onRemove"
+        v-on:onLarge="onLarge"
+        v-on:onSmall="onSmall"
       ></insert-embed>
       <list-handler
         v-if="editor"
@@ -164,9 +165,8 @@ export default {
     onUploadError(error) {
       this.$emit("upload-error", error);
     },
-    onRemove(handler) {
-      handler.currentLine.remove();
-    }
+    onLarge(handler) {},
+    onSmall(handler) {}
   },
   destroyed() {
     this.destroyElm();
