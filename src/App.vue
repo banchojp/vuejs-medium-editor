@@ -1,14 +1,15 @@
 <template>
-    <div id="app">
-        <medium-editor 
-            v-model="content"
-            :prefill="defaultValue"
-            :options="options"
-            :onChange="onChange"
-            v-on:uploaded="uploadCallback"
-            v-on:upload-error="onUploadError">
-        </medium-editor>
-    </div>
+  <div id="app">
+    <medium-editor
+      v-model="content"
+      :prefill="defaultValue"
+      :options="options"
+      :onChange="onChange"
+      v-on:uploaded="uploadCallback"
+      v-on:upload-error="onUploadError"
+    >
+    </medium-editor>
+  </div>
 </template>
 
 <script>
@@ -50,11 +51,21 @@ export default {
           <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of wills</p>`,
       options: {
         uploadUrl: "https://api.imgur.com/3/image",
-        uploadUrlHeader: {'Authorization': 'Client-ID db856b43cc7f441'},
+        uploadUrlHeader: { Authorization: "Client-ID db856b43cc7f441" },
         file_input_name: "image",
         imgur: true,
         toolbar: {
-          buttons: ["bold", "italic", "underline", "quote", "h1", "h2", "h3", 'pre', 'unorderedlist']
+          buttons: [
+            "bold",
+            "italic",
+            "underline",
+            "quote",
+            "h1",
+            "h2",
+            "h3",
+            "pre",
+            "unorderedlist"
+          ]
         }
       }
     };
@@ -63,22 +74,16 @@ export default {
     "medium-editor": Editor
   },
   methods: {
-    onChange() {
-        console.log(this.content)
-    },
-    uploadCallback(url) {
-        console.log("uploaded url", url)
-    },
-    onUploadError(error) {
-        console.log("upload error", error);
-    }
+    onChange() {},
+    uploadCallback(url) {},
+    onUploadError(error) {}
   },
-  mounted(){
-      const els = document.getElementsByTagName("pre");
-      for (let i = 0; i < els.length; i++) {
-          const element = els[i];
-          element.classList.add('prettyprint');
-      }
+  mounted() {
+    const els = document.getElementsByTagName("pre");
+    for (let i = 0; i < els.length; i++) {
+      const element = els[i];
+      element.classList.add("prettyprint");
+    }
   }
 };
 </script>

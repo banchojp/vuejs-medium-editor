@@ -103,7 +103,11 @@ export default {
     },
     sizingHandler(elm) {
       const className = elm.className;
-      elm.className = className.replace("is-focus", "") + " is-focus";
+      if (className.includes("is-focus")) {
+        // do nothing
+      } else {
+        elm.className = className.replace(/ +$/g, "") + " is-focus";
+      }
       if (className.indexOf("expand") > -1) {
         this.currentSize = "is-expand";
       } else if (className.indexOf("full") > -1) {
