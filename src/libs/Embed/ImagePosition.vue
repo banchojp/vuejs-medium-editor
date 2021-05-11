@@ -15,6 +15,11 @@
         小
       </button>
     </div>
+    <div class="image-hander-menu">
+      <button v-on:click="remove">
+        <span>ゴミ箱</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -35,6 +40,10 @@ export default {
     small() {
       this.handler.isShow = false;
       this.$emit("onSmall");
+    },
+    remove() {
+      this.handler.isShow = false;
+      this.$emit("onRemove");
     }
   }
 };

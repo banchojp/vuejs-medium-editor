@@ -1,6 +1,6 @@
 {
   "name": "vuejs-medium-editor-colorpicker",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "./src/Editor.vue",
   "description": "This is a Medium like editor for Vue Js 2 with colorpicker extension added",
   "keywords": [

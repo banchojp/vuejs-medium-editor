@@ -15,6 +15,7 @@
         v-on:upload-error="onUploadError"
         v-on:onLarge="onLarge"
         v-on:onSmall="onSmall"
+        v-on:onRemove="onRemove"
       ></insert-embed>
       <list-handler
         v-if="editor"
@@ -165,8 +166,25 @@ export default {
     onUploadError(error) {
       this.$emit("upload-error", error);
     },
-    onLarge(handler) {},
-    onSmall(handler) {}
+    onLarge(handler) {
+      handler.currentLine.className = handler.currentLine.className.replace(
+        "editor-image-small",
+        ""
+      );
+    },
+    onSmall(handler) {
+      handler.currentLine.className = handler.currentLine.className.replace(
+        "editor-image-small",
+        ""
+      );
+      handler.currentLine.className = handler.currentLine.className.replace(
+        "editor-image",
+        "editor-image editor-image-small"
+      );
+    },
+    onRemove(handler) {
+      handler.currentLine.remove();
+    }
   },
   destroyed() {
     this.destroyElm();
