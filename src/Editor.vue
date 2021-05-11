@@ -171,6 +171,7 @@ export default {
         "editor-image-small",
         ""
       );
+      this.triggerChange();
     },
     onSmall(handler) {
       handler.currentLine.className = handler.currentLine.className.replace(
@@ -181,9 +182,11 @@ export default {
         "editor-image",
         "editor-image editor-image-small"
       );
+      this.triggerChange();
     },
     onRemove(handler) {
       handler.currentLine.remove();
+      this.triggerChange();
     }
   },
   destroyed() {
